@@ -1,33 +1,31 @@
 # Compiled files
-*.class
 target/
-*.jar
-*.war
+*.class
 
 # IDE files
 .idea/
 *.iml
-.classpath
-.project
 .settings/
+.project
+.classpath
 .vscode/
 
-# Logs
+# Log files
 *.log
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Maven wrapper (опционально, можно оставить)
-.mvn/wrapper/maven-wrapper.jar
+logs/
 
 # Docker
-*.pid
+Dockerfile.txt
 
-# Application specific
-*.zip
-java17.zip
-maven.zip
-java/
-maven/
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Application secrets (optional)
+application-prod.yml

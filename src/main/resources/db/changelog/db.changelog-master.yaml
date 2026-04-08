@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001
+      author: init
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column: { name: id, type: bigint, autoIncrement: true, constraints: { primaryKey: true } }
+              - column: { name: email, type: varchar(255), constraints: { unique: true, nullable: false } }
+              - column: { name: password, type: varchar(255), constraints: { nullable: false } }
+              - column: { name: role, type: varchar(50), constraints: { nullable: false } }
+        - createTable:
+            tableName: cards
+            columns:
+              - column: { name: id, type: bigint, autoIncrement: true, constraints: { primaryKey: true } }
+              - column: { name: card_number, type: varchar(255), constraints: { nullable: false, unique: true } }
+              - column: { name: owner_name, type: varchar(255) }
+              - column: { name: expiry_date, type: date }
+              - column: { name: balance, type: decimal(19,2), defaultValue: 0 }
+              - column: { name: status, type: varchar(50), defaultValue: "ACTIVE" }
+              - column: { name: user_id, type: bigint, constraints: { foreignKeyName: fk_card_user, references: users(id) } }
+        - createTable:
+            tableName: transactions
+            columns:
+              - column: { name: id, type: bigint, autoIncrement: true, constraints: { primaryKey: true } }
+              - column: { name: from_card_id, type: bigint, constraints: { foreignKeyName: fk_tx_from, references: cards(id) } }
+              - column: { name: to_card_id, type: bigint, constraints: { foreignKeyName: fk_tx_to, references: cards(id) } }
+              - column: { name: amount, type: decimal(19,2) }
+              - column: { name: transaction_date, type: timestamp }
+              - column: { name: status, type: varchar(50) }

@@ -2,15 +2,11 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-# Копируем jar файл
 COPY target/*.jar app.jar
 
-# Создаем пользователя для запуска приложения
 RUN groupadd -r spring && useradd -r -g spring spring
 USER spring:spring
 
-# Открываем порт
 EXPOSE 8080
 
-# Запускаем приложение
 ENTRYPOINT ["java", "-jar", "app.jar"]
